@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -12,10 +13,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('servicio', function (Blueprint $table) {
-            $table->id('id_servicio');
+            $table->id('id_servicio'); // Llave primaria
             $table->string('nombre');
             $table->string('descripcion');
             $table->decimal('precio_base', 10, 2);
+
+            $table->timestamps(); 
+            $table->softDeletes(); 
         });
     }
 
@@ -27,3 +31,4 @@ return new class extends Migration
         Schema::dropIfExists('servicio');
     }
 };
+
