@@ -7,28 +7,29 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('servicio', function (Blueprint $table) {
-            $table->id('id_servicio'); 
+            $table->id('id_servicio');
             $table->string('nombre');
             $table->string('descripcion');
             $table->decimal('precio_base', 10, 2);
 
-            $table->timestamps(); 
-            $table->softDeletes(); 
+            $table->timestamps();
+            $table->softDeletes();
+
+            
+            $table->foreign('id_usuario');
+                  
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('servicio');
     }
 };
+
+
+
 
