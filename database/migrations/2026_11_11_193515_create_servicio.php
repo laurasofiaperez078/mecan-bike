@@ -9,27 +9,22 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('servicio', function (Blueprint $table) {
-            $table->id('id_servicio');
-            $table->string('nombre');
-            $table->string('descripcion');
-            $table->decimal('precio_base', 10, 2);
+        Schema::create('detalle_servicio', function (Blueprint $table) {
+            $table->id('id_det_servicio');
+            $table->unsignedBigInteger('id_orden');
+            $table->unsignedBigInteger('id_servicio');
+            $table->decimal('precio', 10, 2);
 
-            $table->timestamps();
-            $table->softDeletes();
-
-            
-            $table->foreign('id_usuario');
-                  
+            $table->foreign('id_orden');
+            $table->foreign('id_servicio');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('servicio');
+        Schema::dropIfExists('detalle_servicio');
     }
 };
-
 
 
 
