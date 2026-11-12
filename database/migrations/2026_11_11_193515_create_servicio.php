@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -9,20 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('detalle_servicio', function (Blueprint $table) {
-            $table->id('id_det_servicio');
-            $table->unsignedBigInteger('id_orden');
-            $table->unsignedBigInteger('id_servicio');
+        Schema::create('servicios', function (Blueprint $table) {
+            $table->id('id_servicio');
+            $table->string('nombre');
+            $table->text('descripcion')->nullable();
             $table->decimal('precio', 10, 2);
-
-            $table->foreign('id_orden');
-            $table->foreign('id_servicio');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('detalle_servicio');
+        Schema::dropIfExists('servicios');
     }
 };
 
