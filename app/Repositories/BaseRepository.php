@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Interfaces\BaseInterface;
+use Illuminate\Database\Eloquent\Model;
+
+class BaseRepository implements BaseInterface
+{
+    protected Model $model;
+
+    public function __construct(Model $model)
+    {
+        $this->model = $model;
+    }
+
+    public function getAll()
+    {
+        return $this->model->all();
+    }
+
+    public function getById(int $id)
+    {
+        return $this->model->find($id);
+    }
+
+    public function create(array $data)
+    {
+        return $this->model->create($data);
+    }
+
+    public function update(int $id, array $data)
+    {
+        $registro = $this->getById($id);
+        if (!$registro) {
+            return null;
+        }
+        $registro->update($data);
+        return $registro;
+    }
+
+    public function delete(int $id)
+    {
+        $registro = $this->getById($id);
+        if (!$registro) {
+            return false;
+        }
+        return $registro->delete();
+    }
+}
