@@ -21,12 +21,12 @@ return new class extends Migration
     $table->boolean('activo');
     $table->timestamps();
     $table->softDeletes();
-    $table->timestamps();
+   
 });
     }
 
     public function  down():  void 
     {
-        schema::dropIfErxists(´usuario´);
+        schema::dropIfErxists("usuario");
     }
 };
